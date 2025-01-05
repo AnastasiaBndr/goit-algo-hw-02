@@ -4,7 +4,7 @@ import re
 def check_balanced_brackets(sentence: str):
     stack = []
     parsed_sentence = re.sub(
-        '[^\(\)\[\]\{\}]', '', sentence.strip().replace(' ', '').lower())
+        '[^/(/)/[/]/{/}]', '', sentence.strip().replace(' ', '').lower())
     opening = "({["
     closing = ")}]"
 
@@ -22,8 +22,8 @@ def check_balanced_brackets(sentence: str):
 
 
 def main():
-    command = "{()({\}([]))}"
-    command2 = "{()({\}([])))}"
+    command = "{(5+2)({7*5}([3-4]))}"
+    command2 = "{7(1+8)({3-4}([5+7]))*4)}"
     print(check_balanced_brackets(command))
     print(check_balanced_brackets(command2))
 

@@ -34,14 +34,13 @@ def generate_requests(request: Request):
     global id
     request.setId(id)
     id = id+1
-    queue.put(request)
+    return queue.put(request)
 
 
 def process_request():
     if not queue.empty():
         queue.get()
-        print("Processed!")
-        print(queue_to_string())
+        return queue_to_string()
     else:
         print("Черга пуста")
 
@@ -54,6 +53,7 @@ def parse_input(user_input: str):
 
 
 def main():
+
     while True:
         command, *args = parse_input(input())
 
@@ -64,7 +64,7 @@ def main():
             generate_requests(request)
             print("Generated!")
         if command in ['process']:
-            process_request()
+            print(f"Request processed: {process_request()}")
 
 
 if __name__ == "__main__":
